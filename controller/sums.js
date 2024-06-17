@@ -80,6 +80,7 @@ function infixToPostfix(expression) {
       const result = calculatedAnswer === answer ? "Correct" : "Incorrect";
       res.json({ result, calculatedAnswer });
     } catch (error) {
+      res.status(500).json({ error: error });
       res.status(400).json({ error: "Invalid equation" });
     }
   };
