@@ -72,12 +72,14 @@ function infixToPostfix(expression) {
     return stack.pop();
   }
   
-  const getequ = async (req, res) => { 
+  const checkEquation = async (req, res) => { 
     const { equation, answer } = req.body;
     try {
       const postfix = infixToPostfix(equation);
       const calculatedAnswer = evaluatePostfix(postfix);
-      const result = calculatedAnswer === answer ? "Correct" : "Incorrect";
+      const roundedCalculatedAnswer = parseFloat(calculatedAnswer.toFixed(2));
+      // const roundedAnswer = parseFloat(answer.toFixed(2));
+      const result = roundedCalculatedAnswer == answer ? "Correct" : "Incorrect";
       res.json({ result, calculatedAnswer });
     } catch (error) {
       res.status(500).json({ error: error });
@@ -113,5 +115,5 @@ function infixToPostfix(expression) {
     res.json({ numbers: result });
   };
   
-  module.exports = { sendsum, checksum, getequ };
+  module.exports = { sendsum, checksum, checkEquation };
   

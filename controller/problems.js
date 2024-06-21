@@ -143,7 +143,7 @@ function generateAndEvaluateRandomEquation(termsCount) {
 
 const generateEquation = async (req, res) => {
   try {
-      const termsCount = parseInt(req.query.termsCount) || 5;
+      const termsCount = parseInt(req.query.termsCount) || 4;
       const result = generateAndEvaluateRandomEquation(termsCount);
       res.json(result);
   } catch (error) {
